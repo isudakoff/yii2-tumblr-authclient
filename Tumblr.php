@@ -42,7 +42,11 @@ class Tumblr extends OAuth1
      */
     protected function initUserAttributes()
     {
-        return $this->api('/user/info', 'GET');
+        return $this->createApiRequest()
+            ->setMethod('GET')
+            ->setUrl('user/info')
+            ->addHeaders(['Content-Type' => "application/x-www-form-urlencoded"])
+            ->send();
     }
 
     /**
